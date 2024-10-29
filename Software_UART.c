@@ -1,7 +1,5 @@
 #include "Includes.h"
 
-
-
 void InitSoftUART(void)		// Initialize UART pins to proper values
 {
 	UART_TX = 1;			// TX pin is high in idle state
@@ -10,46 +8,41 @@ void InitSoftUART(void)		// Initialize UART pins to proper values
 	UART_TX_DIR = 0;		// Output
 }
 
-
-
 unsigned char UART_Receive(void)
 {
 	// Pin Configurations
-    // GP1 is UART RX Pin
+    // GP5 is UART RX Pin
 
 	unsigned char DataValue = 0;
 
-	//wait for start bit
-	while(UART_RX==1);
+	// Wait for start bit
+	while(UART_RX == 1);
 
 	__delay_us(OneBitDelay);
-	__delay_us(OneBitDelay/2);   // Take sample value in the mid of bit duration
+	__delay_us(OneBitDelay / 2);   // Take sample value in the mid of bit duration
 
 	for ( unsigned char i = 0; i < DataBitCount; i++ )
 	{
-		if ( UART_RX == 1 )   //if received bit is high
+		if ( UART_RX == 1 )   // If received bit is high
 		{
-			DataValue += (1<<i);
+			DataValue += (1 << i);
 		}
 
 		__delay_us(OneBitDelay);
 	}
 
 	// Check for stop bit
-	if ( UART_RX == 1 )       //Stop bit should be high
+	if ( UART_RX == 1 )       // Stop bit should be high
 	{
-		__delay_us(OneBitDelay/2);
+		__delay_us(OneBitDelay / 2);
 		return DataValue;
 	}
-	else                      //some error occurred !
+	else                      // Some error occurred!
 	{
-		__delay_us(OneBitDelay/2);
-		return 0x000;
+		__delay_us(OneBitDelay / 2);
+		return 0x00;
 	}
 }
-
-
-
 
 void UART_Transmit(const char DataValue)
 {
@@ -67,12 +60,12 @@ void UART_Transmit(const char DataValue)
 
 	for ( unsigned char i = 0; i < DataBitCount; i++ )
 	{
-		//Set Data pin according to the DataValue
-		if( ((DataValue>>i)&0x1) == 0x1 )   //if Bit is high
+		// Set Data pin according to the DataValue
+		if( ((DataValue >> i) & 0x1) == 0x1 )   // If bit is high
 		{
 			UART_TX = 1;
 		}
-		else      //if Bit is low
+		else      // If bit is low
 		{
 			UART_TX = 0;
 		}
@@ -80,7 +73,7 @@ void UART_Transmit(const char DataValue)
 	    __delay_us(OneBitDelay);
 	}
 
-	//Send Stop Bit
+	// Send Stop Bit
 	UART_TX = 1;
 	__delay_us(OneBitDelay);
 }

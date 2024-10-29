@@ -51,17 +51,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=Main.c Software_UART.c
+SOURCEFILES_QUOTED_IF_SPACED=Main.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/Main.p1 ${OBJECTDIR}/Software_UART.p1
-POSSIBLE_DEPFILES=${OBJECTDIR}/Main.p1.d ${OBJECTDIR}/Software_UART.p1.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/Main.p1
+POSSIBLE_DEPFILES=${OBJECTDIR}/Main.p1.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/Main.p1 ${OBJECTDIR}/Software_UART.p1
+OBJECTFILES=${OBJECTDIR}/Main.p1
 
 # Source Files
-SOURCEFILES=Main.c Software_UART.c
+SOURCEFILES=Main.c
 
 
 
@@ -96,14 +96,6 @@ ${OBJECTDIR}/Main.p1: Main.c  nbproject/Makefile-${CND_CONF}.mk
 	@-${MV} ${OBJECTDIR}/Main.d ${OBJECTDIR}/Main.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/Main.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/Software_UART.p1: Software_UART.c  nbproject/Makefile-${CND_CONF}.mk 
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/Software_UART.p1.d 
-	@${RM} ${OBJECTDIR}/Software_UART.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -mdebugger=pickit3   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mno-default-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/Software_UART.p1 Software_UART.c 
-	@-${MV} ${OBJECTDIR}/Software_UART.d ${OBJECTDIR}/Software_UART.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/Software_UART.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
 else
 ${OBJECTDIR}/Main.p1: Main.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}" 
@@ -112,14 +104,6 @@ ${OBJECTDIR}/Main.p1: Main.c  nbproject/Makefile-${CND_CONF}.mk
 	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mno-default-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/Main.p1 Main.c 
 	@-${MV} ${OBJECTDIR}/Main.d ${OBJECTDIR}/Main.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/Main.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
-${OBJECTDIR}/Software_UART.p1: Software_UART.c  nbproject/Makefile-${CND_CONF}.mk 
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/Software_UART.p1.d 
-	@${RM} ${OBJECTDIR}/Software_UART.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mno-default-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/Software_UART.p1 Software_UART.c 
-	@-${MV} ${OBJECTDIR}/Software_UART.d ${OBJECTDIR}/Software_UART.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/Software_UART.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 endif
 
