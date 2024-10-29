@@ -1,0 +1,5 @@
+_UART_Receive: CODE, 966 0 57
+_main: CODE, 906 0 19
+_InitSoftUART: CODE, 901 0 5
+_UART_Transmit: CODE, 925 0 41
+Total: 122

@@ -1,0 +1,573 @@
+
+
+HI-TECH Software PIC PRO Macro Assembler V9.83 build 10920 
+                                                                                               Wed Oct 17 00:05:16 2012
+
+HI-TECH Software Omniscient Code Generator (PRO mode) build 10920
+     1                           	processor	12F675
+     2                           	opt	pw 120
+     3                           	opt	pm
+     4                           	psect	config,global,class=CONFIG,delta=2
+     5                           	psect	text97,local,class=CODE,delta=2
+     6                           	psect	cinit,global,class=CODE,delta=2
+     7                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1
+     8                           	psect	cstackBANK0,global,class=BANK0,space=1,delta=1
+     9                           	psect	maintext,global,class=CODE,delta=2
+    10                           	psect	text98,local,class=CODE,delta=2
+    11                           	psect	text99,local,class=CODE,delta=2
+    12                           	psect	text100,local,class=CODE,delta=2
+    13                           	psect	text101,local,class=CODE,delta=2
+    14                           	psect	pa_nodes,global,class=CODE,delta=2
+    15                           	dabs	1,0x5E,2
+    16  000A                     	;#
+    17                           
+    18                           	psect	config
+    19  2007  31C4               	dw	12740	;#
+    20                           
+    21                           	psect	text97
+    22  0000                     __ptext97:	
+    23  001F                     _ADCON0	set	31
+    24  0019                     _CMCON	set	25
+    25  0005                     _GPIO	set	5
+    26  0028                     _GP0	set	40
+    27  0029                     _GP1	set	41
+    28  009F                     _ANSEL	set	159
+    29  0085                     _TRISIO	set	133
+    30  0099                     _VRCON	set	153
+    31  0428                     _TRISIO0	set	1064
+    32  0429                     _TRISIO1	set	1065
+    33                           
+    34                           	psect	cinit
+    35  0383                     start_initialization:	
+    36  0383                     end_of_initialization:	
+    37                           ;End of C runtime variable initialization code
+    38                           
+    39  0383  0183               	clrf	3
+    40  0384  2B8A               	ljmp	_main	;jump to C main() function
+    41                           
+    42                           	psect	cstackCOMMON
+    43  0000                     __pcstackCOMMON:	
+    44  0000                     ??_InitSoftUART:	
+    45  0000                     ??_main:	
+    46                           ; 0 bytes @ 0x0
+    47                           
+    48                           
+    49                           	psect	cstackBANK0
+    50  0020                     __pcstackBANK0:	
+    51                           ; 0 bytes @ 0x0
+    52                           
+    53  0020                     ?_InitSoftUART:	
+    54  0020                     ??_UART_Receive:	
+    55                           ; 0 bytes @ 0x0
+    56                           
+    57  0020                     ?_UART_Transmit:	
+    58                           ; 0 bytes @ 0x0
+    59                           
+    60  0020                     ??_UART_Transmit:	
+    61                           ; 0 bytes @ 0x0
+    62                           
+    63  0020                     ?_main:	
+    64                           ; 0 bytes @ 0x0
+    65                           
+    66  0020                     ?_UART_Receive:	
+    67                           ; 0 bytes @ 0x0
+    68                           
+    69                           
+    70                           ; 1 bytes @ 0x0
+    71  0020                     	ds	1
+    72  0021                     UART_Receive@DataValue:	
+    73  0021                     UART_Transmit@DataValue:	
+    74                           ; 1 bytes @ 0x1
+    75                           
+    76                           
+    77                           ; 1 bytes @ 0x1
+    78  0021                     	ds	1
+    79  0022                     UART_Receive@i:	
+    80  0022                     UART_Transmit@i:	
+    81                           ; 1 bytes @ 0x2
+    82                           
+    83                           
+    84                           ; 1 bytes @ 0x2
+    85  0022                     	ds	1
+    86  0023                     main@ch:	
+    87                           
+    88                           ; 1 bytes @ 0x3
+    89  0023                     	ds	1
+    90                           
+    91                           	psect	maintext
+    92  038A                     __pmaintext:	
+    93 ;;Data sizes: Strings 0, constant 0, data 0, bss 0, persistent 0 stack 0
+    94 ;;Auto spaces:   Size  Autos    Used
+    95 ;; COMMON           0      0       0
+    96 ;; BANK0           62      4       4
+    97 ;;
+    98 ;; Pointer list with targets:
+    99 ;;
+   100 ;; Critical Paths under _main in COMMON
+   101 ;;
+   102 ;;   None.
+   103 ;;
+   104 ;; Critical Paths under _main in BANK0
+   105 ;;
+   106 ;;   _main->_UART_Receive
+   107 ;;   _main->_UART_Transmit
+   108 ;;
+   109 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   110 ;;
+   111 ;;
+   112 ;;Call Graph Tables:
+   113 ;;
+   114 ;; ---------------------------------------------------------------------------------
+   115 ;; (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+   116 ;; ---------------------------------------------------------------------------------
+   117 ;; (0) _main                                                 1     1      0     206
+   118 ;;                                              3 BANK0      1     1      0
+   119 ;;                       _InitSoftUART
+   120 ;;                       _UART_Receive
+   121 ;;                      _UART_Transmit
+   122 ;; ---------------------------------------------------------------------------------
+   123 ;; (1) _UART_Transmit                                        3     3      0      90
+   124 ;;                                              0 BANK0      3     3      0
+   125 ;; ---------------------------------------------------------------------------------
+   126 ;; (1) _UART_Receive                                         3     3      0      92
+   127 ;;                                              0 BANK0      3     3      0
+   128 ;; ---------------------------------------------------------------------------------
+   129 ;; (1) _InitSoftUART                                         0     0      0       0
+   130 ;; ---------------------------------------------------------------------------------
+   131 ;; Estimated maximum stack depth 1
+   132 ;; ---------------------------------------------------------------------------------
+   133 ;; Call Graph Graphs:
+   134 ;; _main (ROOT)
+   135 ;;   _InitSoftUART
+   136 ;;   _UART_Receive
+   137 ;;   _UART_Transmit
+   138 ;;
+   139 ;; Address spaces:
+   140 ;;Name               Size   Autos  Total    Cost      Usage
+   141 ;;BITCOMMON            0      0       0       0        0.0%
+   142 ;;EEDATA              80      0       0       0        0.0%
+   143 ;;NULL                 0      0       0       0        0.0%
+   144 ;;CODE                 0      0       0       0        0.0%
+   145 ;;BITSFR0              0      0       0       1        0.0%
+   146 ;;SFR0                 0      0       0       1        0.0%
+   147 ;;COMMON               0      0       0       1        0.0%
+   148 ;;BITSFR1              0      0       0       2        0.0%
+   149 ;;SFR1                 0      0       0       2        0.0%
+   150 ;;STACK                0      0       1       2        0.0%
+   151 ;;BITBANK0            3E      0       0       3        0.0%
+   152 ;;BANK0               3E      4       4       4        6.5%
+   153 ;;ABS                  0      0       0       5        0.0%
+   154 ;;DATA                 0      0       0       6        0.0%
+   155                           
+   156                           
+   157 ;; *************** function _main *****************
+   158 ;; Defined at:
+   159 ;;		line 21 in file "C:\Users\Saeed\Desktop\PIC12F675 Soft UART Code\Code\Main.c"
+   160 ;; Parameters:    Size  Location     Type
+   161 ;;		None
+   162 ;; Auto vars:     Size  Location     Type
+   163 ;;  ch              1    3[BANK0 ] unsigned char 
+   164 ;; Return value:  Size  Location     Type
+   165 ;;		None               void
+   166 ;; Registers used:
+   167 ;;		wreg, status,2, status,0, pclath, cstack
+   168 ;; Tracked objects:
+   169 ;;		On entry : 17F/0
+   170 ;;		On exit  : 0/0
+   171 ;;		Unchanged: 0/0
+   172 ;; Data sizes:     COMMON   BANK0
+   173 ;;      Params:         0       0
+   174 ;;      Locals:         0       1
+   175 ;;      Temps:          0       0
+   176 ;;      Totals:         0       1
+   177 ;;Total ram usage:        1 bytes
+   178 ;; Hardware stack levels required when called:    1
+   179 ;; This function calls:
+   180 ;;		_InitSoftUART
+   181 ;;		_UART_Receive
+   182 ;;		_UART_Transmit
+   183 ;; This function is called by:
+   184 ;;		Startup code after reset
+   185 ;; This function uses a non-reentrant model
+   186 ;;
+   187  038A                     _main:	
+   188                           
+   189                           ;Main.c: 24: ANSEL = 0x00;
+   190                           
+   191                           ; Regs used in _main: [wreg+status,2+status,0+pclath+cstack]
+   192  038A  1683               	bsf	3,5	;RP0=1, select bank1
+   193  038B  019F               	clrf	31	;volatile
+   194                           
+   195                           ;Main.c: 25: ADCON0 = 0x00;
+   196  038C  1283               	bcf	3,5	;RP0=0, select bank0
+   197  038D  019F               	clrf	31	;volatile
+   198                           
+   199                           ;Main.c: 26: CMCON = 0x07;
+   200  038E  3007               	movlw	7
+   201  038F  0099               	movwf	25	;volatile
+   202                           
+   203                           ;Main.c: 27: VRCON = 0x00;
+   204  0390  1683               	bsf	3,5	;RP0=1, select bank1
+   205  0391  0199               	clrf	25	;volatile
+   206                           
+   207                           ;Main.c: 28: TRISIO = 0x08;
+   208  0392  3008               	movlw	8
+   209  0393  0085               	movwf	5	;volatile
+   210                           
+   211                           ;Main.c: 29: GPIO = 0x00;
+   212  0394  1283               	bcf	3,5	;RP0=0, select bank0
+   213  0395  0185               	clrf	5	;volatile
+   214                           
+   215                           ;Main.c: 31: InitSoftUART();
+   216  0396  2385               	fcall	_InitSoftUART
+   217  0397                     l1576:	
+   218                           
+   219                           ;Main.c: 34: {
+   220                           ;Main.c: 35: ch = UART_Receive();
+   221  0397  23C6               	fcall	_UART_Receive
+   222  0398  1283               	bcf	3,5	;RP0=0, select bank0
+   223  0399  00A3               	movwf	main@ch
+   224                           
+   225                           ;Main.c: 36: UART_Transmit(ch);
+   226  039A  0823               	movf	main@ch,w
+   227  039B  239D               	fcall	_UART_Transmit
+   228  039C  2B97               	goto	l1576
+   229  039D                     __end_of_main:	
+   230                           
+   231                           	psect	text98
+   232  039D                     __ptext98:	
+   233 ;; =============== function _main ends ============
+   234                           
+   235                           
+   236 ;; *************** function _UART_Transmit *****************
+   237 ;; Defined at:
+   238 ;;		line 55 in file "C:\Users\Saeed\Desktop\PIC12F675 Soft UART Code\Code\Software_UART.c"
+   239 ;; Parameters:    Size  Location     Type
+   240 ;;  DataValue       1    wreg     const unsigned char 
+   241 ;; Auto vars:     Size  Location     Type
+   242 ;;  DataValue       1    1[BANK0 ] const unsigned char 
+   243 ;;  i               1    2[BANK0 ] unsigned char 
+   244 ;; Return value:  Size  Location     Type
+   245 ;;		None               void
+   246 ;; Registers used:
+   247 ;;		wreg, status,2, status,0
+   248 ;; Tracked objects:
+   249 ;;		On entry : 20/0
+   250 ;;		On exit  : 0/0
+   251 ;;		Unchanged: 0/0
+   252 ;; Data sizes:     COMMON   BANK0
+   253 ;;      Params:         0       0
+   254 ;;      Locals:         0       2
+   255 ;;      Temps:          0       1
+   256 ;;      Totals:         0       3
+   257 ;;Total ram usage:        3 bytes
+   258 ;; Hardware stack levels used:    1
+   259 ;; This function calls:
+   260 ;;		Nothing
+   261 ;; This function is called by:
+   262 ;;		_main
+   263 ;; This function uses a non-reentrant model
+   264 ;;
+   265  039D                     _UART_Transmit:	
+   266                           
+   267                           ; Regs used in _UART_Transmit: [wreg+status,2+status,0]
+   268                           ;UART_Transmit@DataValue stored from wreg
+   269  039D  00A1               	movwf	UART_Transmit@DataValue
+   270  039E  30D0               	movlw	208
+   271                           
+   272                           ;Software_UART.c: 65: GP0 = 0;
+   273  039F  1005               	bcf	5,0
+   274                           
+   275                           ;Software_UART.c: 66: _delay((unsigned long)(((1000000/1200))*(4000000/4000000.0)));
+   276  03A0  00A0               	movwf	??_UART_Transmit
+   277  03A1                     u177:	
+   278  03A1  0064               	clrwdt
+   279  03A2  0BA0               	decfsz	??_UART_Transmit,f
+   280  03A3  2BA1               	goto	u177
+   281                           
+   282                           ;Software_UART.c: 68: for ( unsigned char i = 0; i < 8; i++ )
+   283  03A4  1283               	bcf	3,5	;RP0=0, select bank0
+   284  03A5  01A2               	clrf	UART_Transmit@i
+   285  03A6                     l1554:	
+   286                           
+   287                           ;Software_UART.c: 69: {
+   288                           ;Software_UART.c: 71: if( ((DataValue>>i)&0x1) == 0x1 )
+   289  03A6  0821               	movf	UART_Transmit@DataValue,w
+   290  03A7  00A0               	movwf	??_UART_Transmit
+   291  03A8  0A22               	incf	UART_Transmit@i,w
+   292  03A9  2BAC               	goto	u144
+   293  03AA                     u145:	
+   294  03AA  1003               	clrc
+   295  03AB  0CA0               	rrf	??_UART_Transmit,f
+   296  03AC                     u144:	
+   297  03AC  3EFF               	addlw	-1
+   298  03AD  1D03               	skipz
+   299  03AE  2BAA               	goto	u145
+   300  03AF  1C20               	btfss	??_UART_Transmit,0
+   301  03B0  2BB3               	goto	l713
+   302                           
+   303                           ;Software_UART.c: 72: {
+   304                           ;Software_UART.c: 73: GP0 = 1;
+   305  03B1  1405               	bsf	5,0
+   306                           
+   307                           ;Software_UART.c: 74: }
+   308  03B2  2BB4               	goto	l1558
+   309  03B3                     l713:	
+   310                           
+   311                           ;Software_UART.c: 75: else
+   312                           ;Software_UART.c: 76: {
+   313                           ;Software_UART.c: 77: GP0 = 0;
+   314  03B3  1005               	bcf	5,0
+   315  03B4                     l1558:	
+   316                           
+   317                           ;Software_UART.c: 78: }
+   318                           ;Software_UART.c: 80: _delay((unsigned long)(((1000000/1200))*(4000000/4000000.0)));
+   319  03B4  30D0               	movlw	208
+   320  03B5  00A0               	movwf	??_UART_Transmit
+   321  03B6                     u187:	
+   322  03B6  0064               	clrwdt
+   323  03B7  0BA0               	decfsz	??_UART_Transmit,f
+   324  03B8  2BB6               	goto	u187
+   325  03B9  3008               	movlw	8
+   326  03BA  1283               	bcf	3,5	;RP0=0, select bank0
+   327  03BB  0AA2               	incf	UART_Transmit@i,f
+   328  03BC  0222               	subwf	UART_Transmit@i,w
+   329  03BD  1C03               	skipc
+   330  03BE  2BA6               	goto	l1554
+   331  03BF  30D0               	movlw	208
+   332                           
+   333                           ;Software_UART.c: 81: }
+   334                           ;Software_UART.c: 84: GP0 = 1;
+   335  03C0  1405               	bsf	5,0
+   336                           
+   337                           ;Software_UART.c: 85: _delay((unsigned long)(((1000000/1200))*(4000000/4000000.0)));
+   338  03C1  00A0               	movwf	??_UART_Transmit
+   339  03C2                     u197:	
+   340  03C2  0064               	clrwdt
+   341  03C3  0BA0               	decfsz	??_UART_Transmit,f
+   342  03C4  2BC2               	goto	u197
+   343  03C5  0008               	return
+   344  03C6                     __end_of_UART_Transmit:	
+   345                           
+   346                           	psect	text99
+   347  03C6                     __ptext99:	
+   348 ;; =============== function _UART_Transmit ends ============
+   349                           
+   350                           
+   351 ;; *************** function _UART_Receive *****************
+   352 ;; Defined at:
+   353 ;;		line 16 in file "C:\Users\Saeed\Desktop\PIC12F675 Soft UART Code\Code\Software_UART.c"
+   354 ;; Parameters:    Size  Location     Type
+   355 ;;		None
+   356 ;; Auto vars:     Size  Location     Type
+   357 ;;  i               1    2[BANK0 ] unsigned char 
+   358 ;;  DataValue       1    1[BANK0 ] unsigned char 
+   359 ;; Return value:  Size  Location     Type
+   360 ;;                  1    wreg      unsigned char 
+   361 ;; Registers used:
+   362 ;;		wreg, status,2, status,0
+   363 ;; Tracked objects:
+   364 ;;		On entry : 0/20
+   365 ;;		On exit  : 0/0
+   366 ;;		Unchanged: 0/0
+   367 ;; Data sizes:     COMMON   BANK0
+   368 ;;      Params:         0       0
+   369 ;;      Locals:         0       2
+   370 ;;      Temps:          0       1
+   371 ;;      Totals:         0       3
+   372 ;;Total ram usage:        3 bytes
+   373 ;; Hardware stack levels used:    1
+   374 ;; This function calls:
+   375 ;;		Nothing
+   376 ;; This function is called by:
+   377 ;;		_main
+   378 ;; This function uses a non-reentrant model
+   379 ;;
+   380  03C6                     _UART_Receive:	
+   381                           
+   382                           ;Software_UART.c: 20: unsigned char DataValue = 0;
+   383                           
+   384                           ; Regs used in _UART_Receive: [wreg+status,2+status,0]
+   385  03C6  1283               	bcf	3,5	;RP0=0, select bank0
+   386  03C7  01A1               	clrf	UART_Receive@DataValue
+   387  03C8                     l700:	
+   388                           ;Software_UART.c: 23: while(GP1==1);
+   389                           
+   390  03C8  1885               	btfsc	5,1
+   391  03C9  2BC8               	goto	l700
+   392                           
+   393                           ;Software_UART.c: 25: _delay((unsigned long)(((1000000/1200))*(4000000/4000000.0)));
+   394  03CA  30D0               	movlw	208
+   395  03CB  00A0               	movwf	??_UART_Receive
+   396  03CC                     u207:	
+   397  03CC  0064               	clrwdt
+   398  03CD  0BA0               	decfsz	??_UART_Receive,f
+   399  03CE  2BCC               	goto	u207
+   400                           
+   401                           ;Software_UART.c: 26: _delay((unsigned long)(((1000000/1200)/2)*(4000000/4000000.0)));
+   402  03CF  308A               	movlw	138
+   403  03D0  1283               	bcf	3,5	;RP0=0, select bank0
+   404  03D1  00A0               	movwf	??_UART_Receive
+   405  03D2                     u217:	
+   406  03D2  0BA0               	decfsz	??_UART_Receive,f
+   407  03D3  2BD2               	goto	u217
+   408  03D4  0064               	clrwdt
+   409                           
+   410                           ;Software_UART.c: 28: for ( unsigned char i = 0; i < 8; i++ )
+   411  03D5  1283               	bcf	3,5	;RP0=0, select bank0
+   412  03D6  01A2               	clrf	UART_Receive@i
+   413  03D7                     l703:	
+   414                           
+   415                           ;Software_UART.c: 29: {
+   416                           ;Software_UART.c: 30: if ( GP1 == 1 )
+   417  03D7  1C85               	btfss	5,1
+   418  03D8  2BE4               	goto	l1530
+   419                           
+   420                           ;Software_UART.c: 31: {
+   421                           ;Software_UART.c: 32: DataValue += (1<<i);
+   422  03D9  3001               	movlw	1
+   423  03DA  00A0               	movwf	??_UART_Receive
+   424  03DB  0A22               	incf	UART_Receive@i,w
+   425  03DC  2BDF               	goto	u114
+   426  03DD                     u115:	
+   427  03DD  1003               	clrc
+   428  03DE  0DA0               	rlf	??_UART_Receive,f
+   429  03DF                     u114:	
+   430  03DF  3EFF               	addlw	-1
+   431  03E0  1D03               	skipz
+   432  03E1  2BDD               	goto	u115
+   433  03E2  0820               	movf	??_UART_Receive,w
+   434  03E3  07A1               	addwf	UART_Receive@DataValue,f
+   435  03E4                     l1530:	
+   436                           
+   437                           ;Software_UART.c: 33: }
+   438                           ;Software_UART.c: 35: _delay((unsigned long)(((1000000/1200))*(4000000/4000000.0)));
+   439  03E4  30D0               	movlw	208
+   440  03E5  00A0               	movwf	??_UART_Receive
+   441  03E6                     u227:	
+   442  03E6  0064               	clrwdt
+   443  03E7  0BA0               	decfsz	??_UART_Receive,f
+   444  03E8  2BE6               	goto	u227
+   445  03E9  3008               	movlw	8
+   446  03EA  1283               	bcf	3,5	;RP0=0, select bank0
+   447  03EB  0AA2               	incf	UART_Receive@i,f
+   448  03EC  0222               	subwf	UART_Receive@i,w
+   449  03ED  1C03               	skipc
+   450  03EE  2BD7               	goto	l703
+   451                           
+   452                           ;Software_UART.c: 36: }
+   453                           ;Software_UART.c: 39: if ( GP1 == 1 )
+   454  03EF  1C85               	btfss	5,1
+   455  03F0  2BF9               	goto	l1540
+   456                           
+   457                           ;Software_UART.c: 40: {
+   458                           ;Software_UART.c: 41: _delay((unsigned long)(((1000000/1200)/2)*(4000000/4000000.0)));
+   459  03F1  308A               	movlw	138
+   460  03F2  00A0               	movwf	??_UART_Receive
+   461  03F3                     u237:	
+   462  03F3  0BA0               	decfsz	??_UART_Receive,f
+   463  03F4  2BF3               	goto	u237
+   464  03F5  0064               	clrwdt
+   465                           
+   466                           ;Software_UART.c: 42: return DataValue;
+   467  03F6  1283               	bcf	3,5	;RP0=0, select bank0
+   468  03F7  0821               	movf	UART_Receive@DataValue,w
+   469  03F8  0008               	return
+   470  03F9                     l1540:	
+   471                           
+   472                           ;Software_UART.c: 44: else
+   473                           ;Software_UART.c: 45: {
+   474                           ;Software_UART.c: 46: _delay((unsigned long)(((1000000/1200)/2)*(4000000/4000000.0)));
+   475  03F9  308A               	movlw	138
+   476  03FA  00A0               	movwf	??_UART_Receive
+   477  03FB                     u247:	
+   478  03FB  0BA0               	decfsz	??_UART_Receive,f
+   479  03FC  2BFB               	goto	u247
+   480  03FD  0064               	clrwdt
+   481                           
+   482                           ;Software_UART.c: 47: return 0x000;
+   483  03FE  3400               	retlw	0
+   484  03FF                     __end_of_UART_Receive:	
+   485                           
+   486                           	psect	text100
+   487  0385                     __ptext100:	
+   488 ;; =============== function _UART_Receive ends ============
+   489                           
+   490                           
+   491 ;; *************** function _InitSoftUART *****************
+   492 ;; Defined at:
+   493 ;;		line 6 in file "C:\Users\Saeed\Desktop\PIC12F675 Soft UART Code\Code\Software_UART.c"
+   494 ;; Parameters:    Size  Location     Type
+   495 ;;		None
+   496 ;; Auto vars:     Size  Location     Type
+   497 ;;		None
+   498 ;; Return value:  Size  Location     Type
+   499 ;;		None               void
+   500 ;; Registers used:
+   501 ;;		None
+   502 ;; Tracked objects:
+   503 ;;		On entry : 17F/0
+   504 ;;		On exit  : 17F/20
+   505 ;;		Unchanged: FFE80/0
+   506 ;; Data sizes:     COMMON   BANK0
+   507 ;;      Params:         0       0
+   508 ;;      Locals:         0       0
+   509 ;;      Temps:          0       0
+   510 ;;      Totals:         0       0
+   511 ;;Total ram usage:        0 bytes
+   512 ;; Hardware stack levels used:    1
+   513 ;; This function calls:
+   514 ;;		Nothing
+   515 ;; This function is called by:
+   516 ;;		_main
+   517 ;; This function uses a non-reentrant model
+   518 ;;
+   519  0385                     _InitSoftUART:	
+   520                           
+   521                           ;Software_UART.c: 7: GP0 = 1;
+   522                           
+   523                           ; Regs used in _InitSoftUART: []
+   524  0385  1405               	bsf	5,0
+   525                           
+   526                           ;Software_UART.c: 9: TRISIO1 = 1;
+   527  0386  1683               	bsf	3,5	;RP0=1, select bank1
+   528  0387  1485               	bsf	5,1
+   529                           
+   530                           ;Software_UART.c: 10: TRISIO0 = 0;
+   531  0388  1005               	bcf	5,0
+   532  0389  0008               	return
+   533  038A                     __end_of_InitSoftUART:	
+   534                           
+   535                           	psect	text101
+   536  0000                     __ptext101:	
+   537 ;; =============== function _InitSoftUART ends ============
+   538                           
+   539  005E                     btemp	set	94	;btemp
+   540  005E                     wtemp0	set	94
+
+
+HI-TECH Software PICC Macro Assembler V9.83 build 10920 
+Symbol Table                                                                                   Wed Oct 17 00:05:16 2012
+
+                   l700 03C8                     l703 03D7                     l713 03B3                     l715 0000  
+                   l697 0000                     _GP0 0028                     _GP1 0029                     u114 03DF  
+                   u115 03DD                     u207 03CC                     u144 03AC                     u217 03D2  
+                   u145 03AA                     u227 03E6                     u237 03F3                     u247 03FB  
+                   u177 03A1                     u187 03B6                     u197 03C2                    l1530 03E4  
+                  l1522 0000                    l1516 0000                    l1540 03F9                    l1532 0000  
+                  l1518 0000                    l1560 0000                    l1544 0000                    l1562 0000  
+                  l1554 03A6                    l1546 0000                    l1570 0000                    l1564 0000  
+                  l1548 0000                    l1572 0000                    l1558 03B4                    l1574 0000  
+                  l1566 0000                    l1576 0397                    l1568 0000                    l1578 0000  
+                  _GPIO 0005                    _main 038A                    btemp 005E                    start 0000  
+         ?_InitSoftUART 0020                   ?_main 0020                   _CMCON 0019                   _ANSEL 009F  
+                 _VRCON 0099   UART_Receive@DataValue 0021                   status 0003                   wtemp0 005E  
+          __end_of_main 039D          ??_InitSoftUART 0000                  ??_main 0000                  _ADCON0 001F  
+                _TRISIO 0085                  main@ch 0023   __end_of_UART_Transmit 03C6          __pcstackCOMMON 0000  
+  __end_of_InitSoftUART 038A              __pmaintext 038A                 _TRISIO0 0428                 _TRISIO1 0429  
+         ?_UART_Receive 0020    end_of_initialization 0383          ??_UART_Receive 0020          UART_Transmit@i 0022  
+ __size_of_InitSoftUART 0005            _InitSoftUART 0385  UART_Transmit@DataValue 0021     start_initialization 0383  
+  __end_of_UART_Receive 03FF  __size_of_UART_Transmit 0029           __pcstackBANK0 0020               __ptext100 0385  
+             __ptext101 0000           UART_Receive@i 0022           _UART_Transmit 039D          ?_UART_Transmit 0020  
+ __size_of_UART_Receive 0039                __ptext97 0000                __ptext98 039D                __ptext99 03C6  
+         __size_of_main 0013            _UART_Receive 03C6         ??_UART_Transmit 0020  
