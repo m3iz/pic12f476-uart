@@ -61,6 +61,10 @@ The following commands are supported for GPIO control:
 - Ensure that the baud rate matches on both the PIC firmware and the terminal program.
 - Check wiring connections to ensure GPIO pins are correctly set up.
 - Monitor the output for any invalid command responses and adjust commands as needed.
+- 
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgments
 
