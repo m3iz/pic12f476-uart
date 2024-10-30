@@ -83,7 +83,7 @@ void ReadAndSendGPIOStates(void) {
     UART_SendString(gpioStates);
 }
 
-void SetGPIOToOutput(unsigned char pin) {
+void SetGPIOToOutput(int pin) {
     // ????????? ??????????? ???? ??? ?????
     switch (pin) {
         case 2:
@@ -103,7 +103,7 @@ void SetGPIOToOutput(unsigned char pin) {
     }
 }
 
-void SetGPIOState(unsigned char pin, unsigned char state) {
+void SetGPIOState(int pin, int state) {
     // ????????? ????????? ???? (0 - ??????, 1 - ???????)
     switch (pin) {
         case 2:
@@ -123,6 +123,26 @@ void SetGPIOState(unsigned char pin, unsigned char state) {
     }
 }
 
+void actions(char act){ //
+    switch(act){
+        case '0':   //read pins
+            SetGPIOToInput();
+            ReadAndSendGPIOStates();
+            break;
+        default:
+            if((act > '1')&&(act < '6')){ //Set high state
+                SetGPIOToOutput(act - '0');
+                SetGPIOState(act - '0', 1);
+                UART_SendString("Set to high");
+            }
+            else { //Set low state
+                SetGPIOToOutput(act - '4');
+                SetGPIOState(act - '4', 0);
+                UART_SendString("Set to low");
+            }
+            break;
+    }
+}
 void main() {
     // ????????? ????? ? UART
     char ch;
@@ -132,23 +152,7 @@ void main() {
     
     while (1) {
         ch = UART_Receive();
-        if(ch == '-'){
-            char rxbuf[20] = {0}; // ????????????? ?????? ??? ????????????
-            int i = 0;
-            while(i < 20){ // ??????????? ????? ???????? ??????
-                rxbuf[i] = UART_Receive();
-                if(rxbuf[i] == 0x0D){
-                    rxbuf[i] = '\0'; // ??????????? ??????? ??????
-                    break;
-                }
-                i++;
-            }
-
-                UART_SendString(rxbuf);
-        }  
-        else {
-                UART_SendString("Invalid command");
-        }
+        actions(ch);
         __delay_ms(1000);          // ???????? ????? ????????? ?????????
     }
 }
